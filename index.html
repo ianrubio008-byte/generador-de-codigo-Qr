@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Códigos QR</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-qrcode"></i> Generador de Códigos QR</h1>
+            <p>Crea códigos QR personalizados en segundos</p>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="qrText">Texto o URL:</label>
+                    <textarea 
+                        id="qrText" 
+                        placeholder="Ingresa el texto, URL o información que quieres convertir en QR..."
+                        rows="4"
+                    >https://github.com</textarea>
+                </div>
+
+                <div class="options-grid">
+                    <div class="form-group">
+                        <label for="qrSize">Tamaño:</label>
+                        <select id="qrSize">
+                            <option value="128">128x128</option>
+                            <option value="256" selected>256x256</option>
+                            <option value="384">384x384</option>
+                            <option value="512">512x512</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qrColor">Color:</label>
+                        <input type="color" id="qrColor" value="#000000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qrBackground">Fondo:</label>
+                        <input type="color" id="qrBackground" value="#ffffff">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qrLevel">Nivel de corrección:</label>
+                        <select id="qrLevel">
+                            <option value="L">Bajo (L)</option>
+                            <option value="M" selected>Medio (M)</option>
+                            <option value="Q">Alto (Q)</option>
+                            <option value="H">Muy Alto (H)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="templates">
+                    <h3>Plantillas rápidas:</h3>
+                    <div class="template-buttons">
+                        <button class="template-btn" data-template="wifi">
+                            <i class="fas fa-wifi"></i> WiFi
+                        </button>
+                        <button class="template-btn" data-template="contact">
+                            <i class="fas fa-user"></i> Contacto
+                        </button>
+                        <button class="template-btn" data-template="email">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                        <button class="template-btn" data-template="sms">
+                            <i class="fas fa-sms"></i> SMS
+                        </button>
+                    </div>
+                </div>
+
+                <button id="generateBtn" class="generate-btn">
+                    <i class="fas fa-magic"></i> Generar QR
+                </button>
+            </div>
+
+            <div class="output-section">
+                <div class="qr-container">
+                    <div id="qrcode"></div>
+                    <div class="qr-placeholder">
+                        <i class="fas fa-qrcode"></i>
+                        <p>Tu código QR aparecerá aquí</p>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button id="downloadBtn" class="download-btn" disabled>
+                        <i class="fas fa-download"></i> Descargar PNG
+                    </button>
+                    <button id="copyBtn" class="copy-btn" disabled>
+                        <i class="fas fa-copy"></i> Copiar Imagen
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Hecho con <i class="fas fa-heart"></i> para la comunidad de GitHub</p>
+        </footer>
+    </div>
+
+    <!-- Modal para plantillas -->
+    <div id="templateModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Configurar Plantilla</h2>
+            <div id="modalBody"></div>
+            <button id="applyTemplate" class="apply-btn">Aplicar</button>
+        </div>
+    </div>
+
+    <!-- Librería QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
